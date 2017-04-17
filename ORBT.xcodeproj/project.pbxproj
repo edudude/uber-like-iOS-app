@@ -15,6 +15,7 @@
 		845CFEB71EA3F99E00DC0A50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845CFEB51EA3F99E00DC0A50 /* LaunchScreen.storyboard */; };
 		845CFEC21EA3F99E00DC0A50 /* ORBTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845CFEC11EA3F99E00DC0A50 /* ORBTTests.swift */; };
 		845CFECD1EA3F99E00DC0A50 /* ORBTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845CFECC1EA3F99E00DC0A50 /* ORBTUITests.swift */; };
+		845CFEDC1EA4123D00DC0A50 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845CFEDB1EA4123D00DC0A50 /* LandingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		845CFEC81EA3F99E00DC0A50 /* ORBTUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ORBTUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		845CFECC1EA3F99E00DC0A50 /* ORBTUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ORBTUITests.swift; sourceTree = "<group>"; };
 		845CFECE1EA3F99E00DC0A50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		845CFEDB1EA4123D00DC0A50 /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		845CFEA81EA3F99E00DC0A50 /* ORBT */ = {
 			isa = PBXGroup;
 			children = (
+				845CFEDA1EA411E000DC0A50 /* ViewControllers */,
 				845CFEA91EA3F99E00DC0A50 /* AppDelegate.swift */,
 				845CFEAB1EA3F99E00DC0A50 /* ViewController.swift */,
 				845CFEAD1EA3F99E00DC0A50 /* Main.storyboard */,
@@ -126,6 +129,14 @@
 				845CFECE1EA3F99E00DC0A50 /* Info.plist */,
 			);
 			path = ORBTUITests;
+			sourceTree = "<group>";
+		};
+		845CFEDA1EA411E000DC0A50 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				845CFEDB1EA4123D00DC0A50 /* LandingViewController.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,7 +208,7 @@
 					845CFEA51EA3F99E00DC0A50 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = G2Q69XMMQZ;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					845CFEBC1EA3F99E00DC0A50 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -267,6 +278,7 @@
 			files = (
 				845CFEAC1EA3F99E00DC0A50 /* ViewController.swift in Sources */,
 				845CFEAA1EA3F99E00DC0A50 /* AppDelegate.swift in Sources */,
+				845CFEDC1EA4123D00DC0A50 /* LandingViewController.swift in Sources */,
 				845CFEB21EA3F99E00DC0A50 /* ORBT.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,11 +431,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = G2Q69XMMQZ;
 				INFOPLIST_FILE = ORBT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.service.ORBT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "f1e01675-81ed-45c1-9cfa-cb302040b021";
+				PROVISIONING_PROFILE_SPECIFIER = new_profile_4_16;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -432,7 +447,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = G2Q69XMMQZ;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ORBT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.service.ORBT;
