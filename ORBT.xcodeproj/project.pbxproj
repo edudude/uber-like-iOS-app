@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		842555FF1EAA945800C2928D /* CustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842555FE1EAA945800C2928D /* CustomerViewController.swift */; };
+		842556011EAA955900C2928D /* CustomerNavigationMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842556001EAA955900C2928D /* CustomerNavigationMenu.swift */; };
+		842556051EAABA9500C2928D /* LGHorizontalLinearFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842556041EAABA9500C2928D /* LGHorizontalLinearFlowLayout.swift */; };
+		843513B61EA9C6D700887FB0 /* ProviderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843513B51EA9C6D700887FB0 /* ProviderViewController.swift */; };
+		843513B81EA9CA5700887FB0 /* AvailabilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843513B71EA9CA5700887FB0 /* AvailabilityViewController.swift */; };
+		843513BA1EA9CA7200887FB0 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843513B91EA9CA7200887FB0 /* CategoryViewController.swift */; };
+		843513BC1EA9CA8900887FB0 /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843513BB1EA9CA8900887FB0 /* ProgressViewController.swift */; };
+		843513BE1EA9CA9B00887FB0 /* PastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843513BD1EA9CA9B00887FB0 /* PastViewController.swift */; };
+		843513C01EA9CAA700887FB0 /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843513BF1EA9CAA700887FB0 /* RequestViewController.swift */; };
+		845A47891EABE5E2007CE554 /* JobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845A47881EABE5E2007CE554 /* JobViewController.swift */; };
+		845A478B1EABE8CC007CE554 /* LiveJobItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845A478A1EABE8CC007CE554 /* LiveJobItem.swift */; };
+		845A478D1EAC420A007CE554 /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845A478C1EAC420A007CE554 /* RatingControl.swift */; };
+		845A478F1EAC441B007CE554 /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845A478E1EAC441B007CE554 /* RatingViewController.swift */; };
 		845CFEAA1EA3F99E00DC0A50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845CFEA91EA3F99E00DC0A50 /* AppDelegate.swift */; };
 		845CFEAC1EA3F99E00DC0A50 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845CFEAB1EA3F99E00DC0A50 /* ViewController.swift */; };
 		845CFEAF1EA3F99E00DC0A50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845CFEAD1EA3F99E00DC0A50 /* Main.storyboard */; };
@@ -16,6 +29,14 @@
 		845CFEC21EA3F99E00DC0A50 /* ORBTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845CFEC11EA3F99E00DC0A50 /* ORBTTests.swift */; };
 		845CFECD1EA3F99E00DC0A50 /* ORBTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845CFECC1EA3F99E00DC0A50 /* ORBTUITests.swift */; };
 		845CFEDC1EA4123D00DC0A50 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845CFEDB1EA4123D00DC0A50 /* LandingViewController.swift */; };
+		848A3D531EA6577B00007547 /* NewRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A3D521EA6577B00007547 /* NewRequestViewController.swift */; };
+		849728E51EA9F721005F626B /* ServiceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849728E41EA9F721005F626B /* ServiceItem.swift */; };
+		84A4B5501EAB26EA00BB12F9 /* SelectProviderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A4B54F1EAB26EA00BB12F9 /* SelectProviderViewController.swift */; };
+		84A4B5521EAB281600BB12F9 /* ProviderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A4B5511EAB281600BB12F9 /* ProviderItem.swift */; };
+		84DA7CF11EA572C200938EA9 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA7CF01EA572C200938EA9 /* ConnectionManager.swift */; };
+		84E2C8791EA9901A00532646 /* NavigationMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E2C8771EA9901A00532646 /* NavigationMenuViewController.swift */; };
+		84F895241EA58475006D8B57 /* CustomerSignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F895231EA58475006D8B57 /* CustomerSignUpVC.swift */; };
+		AF59F84A547739F86CDA9BFB /* Pods_ORBT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 213E178079BFFEF6C0E88518 /* Pods_ORBT.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +57,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		115F024A826FE43EB5E4A37A /* Pods-ORBT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ORBT.release.xcconfig"; path = "Pods/Target Support Files/Pods-ORBT/Pods-ORBT.release.xcconfig"; sourceTree = "<group>"; };
+		213E178079BFFEF6C0E88518 /* Pods_ORBT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ORBT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		842555FE1EAA945800C2928D /* CustomerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerViewController.swift; sourceTree = "<group>"; };
+		842556001EAA955900C2928D /* CustomerNavigationMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerNavigationMenu.swift; sourceTree = "<group>"; };
+		842556041EAABA9500C2928D /* LGHorizontalLinearFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LGHorizontalLinearFlowLayout.swift; sourceTree = "<group>"; };
+		843513B51EA9C6D700887FB0 /* ProviderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProviderViewController.swift; sourceTree = "<group>"; };
+		843513B71EA9CA5700887FB0 /* AvailabilityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailabilityViewController.swift; sourceTree = "<group>"; };
+		843513B91EA9CA7200887FB0 /* CategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		843513BB1EA9CA8900887FB0 /* ProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
+		843513BD1EA9CA9B00887FB0 /* PastViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastViewController.swift; sourceTree = "<group>"; };
+		843513BF1EA9CAA700887FB0 /* RequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
+		845A47881EABE5E2007CE554 /* JobViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobViewController.swift; sourceTree = "<group>"; };
+		845A478A1EABE8CC007CE554 /* LiveJobItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveJobItem.swift; sourceTree = "<group>"; };
+		845A478C1EAC420A007CE554 /* RatingControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
+		845A478E1EAC441B007CE554 /* RatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
 		845CFEA61EA3F99E00DC0A50 /* ORBT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ORBT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		845CFEA91EA3F99E00DC0A50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		845CFEAB1EA3F99E00DC0A50 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +87,14 @@
 		845CFECC1EA3F99E00DC0A50 /* ORBTUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ORBTUITests.swift; sourceTree = "<group>"; };
 		845CFECE1EA3F99E00DC0A50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		845CFEDB1EA4123D00DC0A50 /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
+		848A3D521EA6577B00007547 /* NewRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRequestViewController.swift; sourceTree = "<group>"; };
+		849728E41EA9F721005F626B /* ServiceItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceItem.swift; sourceTree = "<group>"; };
+		84A4B54F1EAB26EA00BB12F9 /* SelectProviderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectProviderViewController.swift; sourceTree = "<group>"; };
+		84A4B5511EAB281600BB12F9 /* ProviderItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProviderItem.swift; sourceTree = "<group>"; };
+		84DA7CF01EA572C200938EA9 /* ConnectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
+		84E2C8771EA9901A00532646 /* NavigationMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationMenuViewController.swift; sourceTree = "<group>"; };
+		84F895231EA58475006D8B57 /* CustomerSignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerSignUpVC.swift; sourceTree = "<group>"; };
+		EB3F55D19BC63EA16416568D /* Pods-ORBT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ORBT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ORBT/Pods-ORBT.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF59F84A547739F86CDA9BFB /* Pods_ORBT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +123,53 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		842556021EAA962300C2928D /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				842556001EAA955900C2928D /* CustomerNavigationMenu.swift */,
+				842555FE1EAA945800C2928D /* CustomerViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		842556031EAA966A00C2928D /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				848A3D521EA6577B00007547 /* NewRequestViewController.swift */,
+				84A4B54F1EAB26EA00BB12F9 /* SelectProviderViewController.swift */,
+				84A4B5511EAB281600BB12F9 /* ProviderItem.swift */,
+			);
+			name = Screens;
+			sourceTree = "<group>";
+		};
+		843513B21EA9C5D200887FB0 /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				843513B41EA9C5EA00887FB0 /* ViewControllers */,
+				84E2C8711EA98FA000532646 /* MenuContentScreens */,
+			);
+			name = Provider;
+			sourceTree = "<group>";
+		};
+		843513B31EA9C5D900887FB0 /* Customer */ = {
+			isa = PBXGroup;
+			children = (
+				842556041EAABA9500C2928D /* LGHorizontalLinearFlowLayout.swift */,
+				842556031EAA966A00C2928D /* Screens */,
+				842556021EAA962300C2928D /* ViewControllers */,
+			);
+			name = Customer;
+			sourceTree = "<group>";
+		};
+		843513B41EA9C5EA00887FB0 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				843513B51EA9C6D700887FB0 /* ProviderViewController.swift */,
+				84E2C8771EA9901A00532646 /* NavigationMenuViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 		845CFE9D1EA3F99E00DC0A50 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +177,8 @@
 				845CFEC01EA3F99E00DC0A50 /* ORBTTests */,
 				845CFECB1EA3F99E00DC0A50 /* ORBTUITests */,
 				845CFEA71EA3F99E00DC0A50 /* Products */,
+				FC2F88F553DDBC63B40ADDE3 /* Pods */,
+				D272C686E0C9DF056FD4CE0D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,8 +195,11 @@
 		845CFEA81EA3F99E00DC0A50 /* ORBT */ = {
 			isa = PBXGroup;
 			children = (
+				843513B31EA9C5D900887FB0 /* Customer */,
+				843513B21EA9C5D200887FB0 /* Provider */,
 				845CFEDA1EA411E000DC0A50 /* ViewControllers */,
 				845CFEA91EA3F99E00DC0A50 /* AppDelegate.swift */,
+				845A478C1EAC420A007CE554 /* RatingControl.swift */,
 				845CFEAB1EA3F99E00DC0A50 /* ViewController.swift */,
 				845CFEAD1EA3F99E00DC0A50 /* Main.storyboard */,
 				845CFEB31EA3F99E00DC0A50 /* Assets.xcassets */,
@@ -134,9 +231,44 @@
 		845CFEDA1EA411E000DC0A50 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				84DA7CF01EA572C200938EA9 /* ConnectionManager.swift */,
 				845CFEDB1EA4123D00DC0A50 /* LandingViewController.swift */,
+				84F895231EA58475006D8B57 /* CustomerSignUpVC.swift */,
+				845A47881EABE5E2007CE554 /* JobViewController.swift */,
+				845A478A1EABE8CC007CE554 /* LiveJobItem.swift */,
+				845A478E1EAC441B007CE554 /* RatingViewController.swift */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		84E2C8711EA98FA000532646 /* MenuContentScreens */ = {
+			isa = PBXGroup;
+			children = (
+				843513B71EA9CA5700887FB0 /* AvailabilityViewController.swift */,
+				843513B91EA9CA7200887FB0 /* CategoryViewController.swift */,
+				843513BB1EA9CA8900887FB0 /* ProgressViewController.swift */,
+				843513BD1EA9CA9B00887FB0 /* PastViewController.swift */,
+				843513BF1EA9CAA700887FB0 /* RequestViewController.swift */,
+				849728E41EA9F721005F626B /* ServiceItem.swift */,
+			);
+			name = MenuContentScreens;
+			sourceTree = "<group>";
+		};
+		D272C686E0C9DF056FD4CE0D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				213E178079BFFEF6C0E88518 /* Pods_ORBT.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FC2F88F553DDBC63B40ADDE3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EB3F55D19BC63EA16416568D /* Pods-ORBT.debug.xcconfig */,
+				115F024A826FE43EB5E4A37A /* Pods-ORBT.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,9 +278,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 845CFED11EA3F99E00DC0A50 /* Build configuration list for PBXNativeTarget "ORBT" */;
 			buildPhases = (
+				5B5A86C9086474D1760F9D25 /* [CP] Check Pods Manifest.lock */,
 				845CFEA21EA3F99E00DC0A50 /* Sources */,
 				845CFEA31EA3F99E00DC0A50 /* Frameworks */,
 				845CFEA41EA3F99E00DC0A50 /* Resources */,
+				513A0FBF1836645A65113155 /* [CP] Embed Pods Frameworks */,
+				B9FB6EA631B6CFE1B7DE2FB1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -209,6 +344,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = G2Q69XMMQZ;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					845CFEBC1EA3F99E00DC0A50 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -271,15 +411,83 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		513A0FBF1836645A65113155 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ORBT/Pods-ORBT-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5B5A86C9086474D1760F9D25 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B9FB6EA631B6CFE1B7DE2FB1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ORBT/Pods-ORBT-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		845CFEA21EA3F99E00DC0A50 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84DA7CF11EA572C200938EA9 /* ConnectionManager.swift in Sources */,
+				848A3D531EA6577B00007547 /* NewRequestViewController.swift in Sources */,
+				843513BC1EA9CA8900887FB0 /* ProgressViewController.swift in Sources */,
+				84E2C8791EA9901A00532646 /* NavigationMenuViewController.swift in Sources */,
 				845CFEAC1EA3F99E00DC0A50 /* ViewController.swift in Sources */,
+				84F895241EA58475006D8B57 /* CustomerSignUpVC.swift in Sources */,
+				843513BE1EA9CA9B00887FB0 /* PastViewController.swift in Sources */,
+				843513B81EA9CA5700887FB0 /* AvailabilityViewController.swift in Sources */,
+				845A47891EABE5E2007CE554 /* JobViewController.swift in Sources */,
+				845A478F1EAC441B007CE554 /* RatingViewController.swift in Sources */,
+				842555FF1EAA945800C2928D /* CustomerViewController.swift in Sources */,
+				845A478B1EABE8CC007CE554 /* LiveJobItem.swift in Sources */,
 				845CFEAA1EA3F99E00DC0A50 /* AppDelegate.swift in Sources */,
+				84A4B5501EAB26EA00BB12F9 /* SelectProviderViewController.swift in Sources */,
+				84A4B5521EAB281600BB12F9 /* ProviderItem.swift in Sources */,
 				845CFEDC1EA4123D00DC0A50 /* LandingViewController.swift in Sources */,
+				843513B61EA9C6D700887FB0 /* ProviderViewController.swift in Sources */,
+				845A478D1EAC420A007CE554 /* RatingControl.swift in Sources */,
+				843513BA1EA9CA7200887FB0 /* CategoryViewController.swift in Sources */,
+				842556011EAA955900C2928D /* CustomerNavigationMenu.swift in Sources */,
+				849728E51EA9F721005F626B /* ServiceItem.swift in Sources */,
+				843513C01EA9CAA700887FB0 /* RequestViewController.swift in Sources */,
 				845CFEB21EA3F99E00DC0A50 /* ORBT.xcdatamodeld in Sources */,
+				842556051EAABA9500C2928D /* LGHorizontalLinearFlowLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +637,7 @@
 		};
 		845CFED21EA3F99E00DC0A50 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EB3F55D19BC63EA16416568D /* Pods-ORBT.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -445,6 +654,7 @@
 		};
 		845CFED31EA3F99E00DC0A50 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 115F024A826FE43EB5E4A37A /* Pods-ORBT.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -534,6 +744,7 @@
 				845CFED31EA3F99E00DC0A50 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		845CFED41EA3F99E00DC0A50 /* Build configuration list for PBXNativeTarget "ORBTTests" */ = {
 			isa = XCConfigurationList;
@@ -542,6 +753,7 @@
 				845CFED61EA3F99E00DC0A50 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		845CFED71EA3F99E00DC0A50 /* Build configuration list for PBXNativeTarget "ORBTUITests" */ = {
 			isa = XCConfigurationList;
@@ -550,6 +762,7 @@
 				845CFED91EA3F99E00DC0A50 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
