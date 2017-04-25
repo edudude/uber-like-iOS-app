@@ -1,56 +1,56 @@
 
 import UIKit
 import InteractiveSideMenu
+import Alamofire
 
-class AvailabilityViewController: MenuItemContentViewController {
+class AvailabilityViewController: MenuItemContentViewController, UITableViewDelegate, UITableViewDataSource{
     
-    @IBOutlet weak var mMonF: UIButton!
-    @IBOutlet weak var mMonT: UIButton!
-    @IBOutlet weak var mTueF: UIButton!
-    @IBOutlet weak var mTueT: UIButton!
-    @IBOutlet weak var mWedF: UIButton!
-    @IBOutlet weak var mWedT: UIButton!
-    @IBOutlet weak var mThuF: UIButton!
-    @IBOutlet weak var mThuT: UIButton!
-    @IBOutlet weak var mFriF: UIButton!
-    @IBOutlet weak var mFriT: UIButton!
-    @IBOutlet weak var mSatF: UIButton!
-    @IBOutlet weak var mSatT: UIButton!
-    @IBOutlet weak var mSunF: UIButton!
-    @IBOutlet weak var mSunT: UIButton!
+    // These strings will be the data for the table view cells
+    let animals: [String] = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    // These are the colors of the square views in our table view cells.
+    // In a real project you might use UIImages.
     
-    var mFrom = [UIButton]()
-    var mTo = [UIButton]()
+    // Don't forget to enter this in IB also
+    let cellReuseIdentifier = "AvailabilityItem"
+    
+    @IBOutlet var tableView: UITableView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    // number of rows in table view
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.animals.count
+    }
+    
+    // create a cell for each table view row
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell:AvailabilityItem = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! AvailabilityItem
+
+        cell.mDay.text = self.animals[indexPath.row]
+        cell.mFrom.setTitle("09:00 AM", for: .normal)
+        cell.mTo.setTitle("05:00 PM", for: .normal)
+        return cell
+    }
+    
+    // method to run when table view cell is tapped
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("You tapped cell number \(indexPath.row).")
+    }
     @IBAction func didOpenMenu(_ sender: UIButton) {
         showMenu()
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        // From buttons
-        mFrom.append(mMonF)
-        mFrom.append(mTueF)
-        mFrom.append(mWedF)
-        mFrom.append(mThuF)
-        mFrom.append(mFriF)
-        mFrom.append(mSatF)
-        mFrom.append(mSunF)
-        // To buttons
-        mTo.append(mMonT)
-        mTo.append(mTueT)
-        mTo.append(mWedT)
-        mTo.append(mThuT)
-        mTo.append(mFriT)
-        mTo.append(mSatT)
-        mTo.append(mSunT)
-
-        for i in 0..<7  {
-            mFrom[i].setTitle("09:00 AM", for: .normal)
-            mFrom[i].sizeToFit()
-            mTo[i].setTitle("05:00 PM", for: .normal)
-            mTo[i].sizeToFit()
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
     }
-
+    @IBAction func onAskForApproval(_ sender: Any) {
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
 }

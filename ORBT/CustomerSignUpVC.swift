@@ -74,9 +74,13 @@ class CustomerSignUpVC: UIViewController , UITextFieldDelegate{
                 return
             }
             if ((json["success"] as? String) == "T") {
-                print("success");
+                let alert = UIAlertController(title: "Success", message: "New user register!", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             } else {
-                print(json["message"] as? String);
+                let alert = UIAlertController(title: "Error", message: (json["message"] as? String), preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }

@@ -5,3 +5,9 @@ class ServiceItem: UITableViewCell {
     @IBAction func onClick(_ sender: Any) {
     }
 }
+
+class AvailabilityItem: UITableViewCell {
+    @IBOutlet weak var mDay: UILabel!
+    @IBOutlet weak var mFrom: UIButton!
+    @IBOutlet weak var mTo: UIButton!
+}

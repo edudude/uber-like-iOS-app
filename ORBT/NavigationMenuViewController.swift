@@ -18,6 +18,7 @@
 
 import UIKit
 import InteractiveSideMenu
+import Alamofire
 
 class NavigationMenuViewController: MenuViewController {
 
@@ -55,6 +56,11 @@ extension NavigationMenuViewController: UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 5 {
+            let parameters: Parameters = [
+                "id"        : mID
+            ]
+            Alamofire.request("\(BASE_URL)/service/logout", method: .post, parameters: parameters, encoding: JSONEncoding.default)
+
             mID = -1
             guard let menuContainerViewController = self.menuContainerViewController as? ProviderViewController else { return }
             menuContainerViewController.dismissSelf()

@@ -59,10 +59,24 @@ class JobViewController: MenuItemContentViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if (mStatus == 2) {
-            return 250
+        if (mStatus == 0) {
+            if (mIsCustomer == 0) {
+                return 170
+            } else {
+                return 140
+            }
         }
-        return 150
+        if (mStatus == 1) {
+            if (mIsCustomer == 0) {
+                return 140
+            } else {
+                return 170
+            }
+        }
+        if (mStatus == 2) {
+            return 230
+        }
+        return 200
     }
     
     // create a cell for each table view row

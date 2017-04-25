@@ -22,6 +22,7 @@ class LandingViewController: UIViewController , UITextFieldDelegate , CLLocation
     
     @IBOutlet weak var mEmail: UITextField!
     @IBOutlet weak var mPassword: UITextField!
+    @IBOutlet weak var mLogIn: UIButton!
     
     var locationManager:CLLocationManager!
 
@@ -37,18 +38,24 @@ class LandingViewController: UIViewController , UITextFieldDelegate , CLLocation
     
     @IBAction func onSignUpButton(_ sender: Any) {
     }
+    
     @IBAction func onLogIn(_ sender: Any) {
+        mLogIn.isUserInteractionEnabled = false
+
         let parameters = [
             "email"     : mEmail.text,
             "password"  : mPassword.text
         ]
-        
-        
         Alamofire.request("\(BASE_URL)/user/auth/login", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
-//            debugPrint(response)
             
             // make sure we got JSON and it's a dictionary
+            self.mLogIn.isUserInteractionEnabled = true;
+            
             guard let json = response.result.value as? [String: AnyObject] else {
+                let alert = UIAlertController(title: "Error", message: "Failed to connect server", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+
                 print("didn't get todo object as JSON from API")
                 return
             }
@@ -57,7 +64,7 @@ class LandingViewController: UIViewController , UITextFieldDelegate , CLLocation
                 let mUserInfo = json["userInfo"] as? [String: AnyObject]
                 print(mUserInfo)
                 mID = (mUserInfo?["id"] as? Int)!
-                mName = "\(mUserInfo!["firstname"] as! String!) \(mUserInfo!["lastname"] as! String!)"
+                mName = "\((mUserInfo!["firstname"] as! String!)!) \((mUserInfo!["lastname"] as! String!)!)"
                 
                 mMajor = -1
                 var ta = (mUserInfo?["servicelist"] as! [Int])

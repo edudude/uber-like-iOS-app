@@ -154,8 +154,8 @@ class NewRequestViewController: MenuItemContentViewController , MKMapViewDelegat
                     self.mProviders[i].coordinate = CLLocationCoordinate2DMake(Double(mLat!)!, Double(mLon!)!)
                     
                     var mMajor = mTmp["major"] as? Int
-                    if self.mProviders[i].imageName != "Service\(mMajor!)" {
-                        self.mProviders[i].imageName = "Service\(mMajor!)"
+                    if self.mProviders[i].imageName != "Service\(mMajor! + 1)" {
+                        self.mProviders[i].imageName = "Service\(mMajor! + 1)"
                         self.mapView.removeAnnotation(self.mProviders[i])
                         self.mapView.addAnnotation(self.mProviders[i])
                     }
