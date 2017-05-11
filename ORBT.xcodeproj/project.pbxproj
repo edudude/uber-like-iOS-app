@@ -31,6 +31,7 @@
 		845CFEDC1EA4123D00DC0A50 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845CFEDB1EA4123D00DC0A50 /* LandingViewController.swift */; };
 		848A3D531EA6577B00007547 /* NewRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A3D521EA6577B00007547 /* NewRequestViewController.swift */; };
 		849728E51EA9F721005F626B /* ServiceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849728E41EA9F721005F626B /* ServiceItem.swift */; };
+		84A37E111EB4AB7B00AC7002 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A37E101EB4AB7B00AC7002 /* UserNotifications.framework */; };
 		84A4B5501EAB26EA00BB12F9 /* SelectProviderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A4B54F1EAB26EA00BB12F9 /* SelectProviderViewController.swift */; };
 		84A4B5521EAB281600BB12F9 /* ProviderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A4B5511EAB281600BB12F9 /* ProviderItem.swift */; };
 		84DA7CF11EA572C200938EA9 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DA7CF01EA572C200938EA9 /* ConnectionManager.swift */; };
@@ -89,10 +90,12 @@
 		845CFEDB1EA4123D00DC0A50 /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		848A3D521EA6577B00007547 /* NewRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRequestViewController.swift; sourceTree = "<group>"; };
 		849728E41EA9F721005F626B /* ServiceItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceItem.swift; sourceTree = "<group>"; };
+		84A37E101EB4AB7B00AC7002 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		84A4B54F1EAB26EA00BB12F9 /* SelectProviderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectProviderViewController.swift; sourceTree = "<group>"; };
 		84A4B5511EAB281600BB12F9 /* ProviderItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProviderItem.swift; sourceTree = "<group>"; };
 		84DA7CF01EA572C200938EA9 /* ConnectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
 		84E2C8771EA9901A00532646 /* NavigationMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationMenuViewController.swift; sourceTree = "<group>"; };
+		84ECB9871EB4090300BCABEA /* ORBT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ORBT.entitlements; sourceTree = "<group>"; };
 		84F895231EA58475006D8B57 /* CustomerSignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerSignUpVC.swift; sourceTree = "<group>"; };
 		EB3F55D19BC63EA16416568D /* Pods-ORBT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ORBT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ORBT/Pods-ORBT.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84A37E111EB4AB7B00AC7002 /* UserNotifications.framework in Frameworks */,
 				AF59F84A547739F86CDA9BFB /* Pods_ORBT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -195,6 +199,7 @@
 		845CFEA81EA3F99E00DC0A50 /* ORBT */ = {
 			isa = PBXGroup;
 			children = (
+				84ECB9871EB4090300BCABEA /* ORBT.entitlements */,
 				843513B31EA9C5D900887FB0 /* Customer */,
 				843513B21EA9C5D200887FB0 /* Provider */,
 				845CFEDA1EA411E000DC0A50 /* ViewControllers */,
@@ -257,6 +262,7 @@
 		D272C686E0C9DF056FD4CE0D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				84A37E101EB4AB7B00AC7002 /* UserNotifications.framework */,
 				213E178079BFFEF6C0E88518 /* Pods_ORBT.framework */,
 			);
 			name = Frameworks;
@@ -346,6 +352,9 @@
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -640,14 +649,15 @@
 			baseConfigurationReference = EB3F55D19BC63EA16416568D /* Pods-ORBT.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ORBT/ORBT.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = G2Q69XMMQZ;
 				INFOPLIST_FILE = ORBT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.service.ORBT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f1e01675-81ed-45c1-9cfa-cb302040b021";
-				PROVISIONING_PROFILE_SPECIFIER = new_profile_4_16;
+				PROVISIONING_PROFILE = "2815237c-92bd-4706-b786-216b712334fb";
+				PROVISIONING_PROFILE_SPECIFIER = 5_11;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -657,12 +667,15 @@
 			baseConfigurationReference = 115F024A826FE43EB5E4A37A /* Pods-ORBT.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ORBT/ORBT.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = G2Q69XMMQZ;
 				INFOPLIST_FILE = ORBT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.service.ORBT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "2815237c-92bd-4706-b786-216b712334fb";
+				PROVISIONING_PROFILE_SPECIFIER = 5_11;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

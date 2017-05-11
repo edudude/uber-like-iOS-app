@@ -4,7 +4,7 @@ open class LGHorizontalLinearFlowLayout: UICollectionViewFlowLayout {
     
     fileprivate var lastCollectionViewSize: CGSize = CGSize.zero
     open var scalingOffset: CGFloat = 110
-    open var minimumScaleFactor: CGFloat = 0.5
+    open var minimumScaleFactor: CGFloat = 0.85
     open var scaleItems: Bool = true
     
     static func configureLayout(_ collectionView: UICollectionView, itemSize: CGSize, minimumLineSpacing: CGFloat) -> LGHorizontalLinearFlowLayout {

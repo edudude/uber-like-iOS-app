@@ -2,6 +2,8 @@
 import UIKit
 import InteractiveSideMenu
 import Alamofire
+import CircularSpinner
+import SwiftyJSON
 
 class AvailabilityViewController: MenuItemContentViewController, UITableViewDelegate, UITableViewDataSource{
     
@@ -14,12 +16,16 @@ class AvailabilityViewController: MenuItemContentViewController, UITableViewDele
     let cellReuseIdentifier = "AvailabilityItem"
     
     @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var btnCheck: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    @IBAction func onClickCheck(_ sender: Any) {
+        btnCheck.isSelected = !btnCheck.isSelected
     }
     
     // number of rows in table view
@@ -47,8 +53,61 @@ class AvailabilityViewController: MenuItemContentViewController, UITableViewDele
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        let parameters = [
+            "id"     : mID
+        ]
+        CircularSpinner.show("Loading...", animated: true, type: .indeterminate, showDismissButton: false, delegate: nil)
+        Alamofire.request("\(BASE_URL)/user/auth/getuserinfo", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseData { (resData) -> Void in
+            CircularSpinner.hide()
+            
+            if((resData.result.value) != nil) {
+                let swiftyJsonVar = JSON(resData.result.value!)
+                
+                if swiftyJsonVar["success"].stringValue == "T" {
+                    if (swiftyJsonVar["userInfo"]["canWork"].intValue == 1) {
+                        self.btnCheck.isSelected = true
+                    } else {
+                        self.btnCheck.isSelected = false
+                    }
+                }
+                else {
+                    let alert = UIAlertController(title: "ORBT", message: swiftyJsonVar["message"].stringValue, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            } else {
+                let alert = UIAlertController(title: "Error", message: "Failed to connect server!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
     }
     @IBAction func onAskForApproval(_ sender: Any) {
+        var canWork:Int = 0
+        if (self.btnCheck.isSelected == true) {
+            canWork = 1
+        }
+        let parameters = [
+            "id"     : mID,
+            "canWork": canWork
+        ]
+        CircularSpinner.show("Updating...", animated: true, type: .indeterminate, showDismissButton: false, delegate: nil)
+        Alamofire.request("\(BASE_URL)/user/canWork", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseData { (resData) -> Void in
+            CircularSpinner.hide()
+            
+            if((resData.result.value) != nil) {
+                let swiftyJsonVar = JSON(resData.result.value!)
+                
+                let alert = UIAlertController(title: "ORBT", message: swiftyJsonVar["message"].stringValue, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                let alert = UIAlertController(title: "Error", message: "Failed to connect server!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)

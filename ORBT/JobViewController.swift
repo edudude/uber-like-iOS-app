@@ -7,7 +7,6 @@ class Job {
     var mJobId: Int?
     var customerName: String?
     var providerName: String?
-    var serviceName: String?
     var time: String?
     var latitude: Double?
     var longitude: Double?
@@ -15,18 +14,22 @@ class Job {
     var feedback: String?
     var rating: Int?
     var price: Int?
+    var categoryName: [String]?
+    var imageList: [String]?
+    
     init(mJson: [String:AnyObject]) {
         mJobId = mJson["id"] as! Int
         customerName = mJson["customername"] as! String
         providerName = mJson["providername"] as! String
-        serviceName = "Service\(mJson["serviceid"] as! Int + 1)"
         time = mJson["time"] as! String
         latitude = mJson["latitude"] as! Double
         longitude = mJson["longitude"] as! Double
-        status = 0
+        status = mJson["status"] as! Int
         price = mJson["price"] as! Int
         feedback = mJson["feedback"] as! String
         rating = mJson["rating"] as! Int
+        categoryName = mJson["categoryName"] as! [String]
+        imageList = mJson["imageList"] as! [String]
     }
 }
 
@@ -59,55 +62,39 @@ class JobViewController: MenuItemContentViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        var normalHeight:CGFloat = 300
         if (mStatus == 0) {
             if (mIsCustomer == 0) {
-                return 170
+                return normalHeight
             } else {
-                return 140
+                return normalHeight - 40
             }
         }
         if (mStatus == 1) {
             if (mIsCustomer == 0) {
-                return 140
+                return normalHeight - 40
             } else {
-                return 170
+                return normalHeight
             }
         }
-        if (mStatus == 2) {
-            return 230
-        }
-        return 200
+        return 390
     }
     
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        if (mStatus == 2) {
-            let cell:PastJobItem = self.tableView.dequeueReusableCell(withIdentifier: "PastJobItem") as! PastJobItem
-            let data = mJobs[indexPath.row]
-            
-            cell.mImage.image = UIImage(named:data.serviceName!)
-            cell.mServiceName.text = data.serviceName
-            cell.mCustomer.text = "Customer:\(data.customerName!)"
-            cell.mProvider.text = "Provider:\(data.providerName!)"
-            cell.mTime.text = data.time
-            cell.mPrice.text = "Price:$\(data.price!)"
-            cell.mRating.text = "Rating:\(data.rating!)"
-            cell.mFeedback.text = data.feedback
-            return cell
-        } else {
-            let cell:LiveJobItem = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! LiveJobItem
-            let data = mJobs[indexPath.row]
-        
-            cell.mImage.image = UIImage(named:data.serviceName!)
-            cell.mServiceName.text = data.serviceName
-            cell.mCustomer.text = "Customer:\(data.customerName!)"
-            cell.mProvider.text = "Provider:\(data.providerName!)"
-            cell.mTime.text = data.time
-            cell.mPrice.text = "Price:$\(data.price!)"
-            cell.mJobId = data.mJobId
-            cell.mStatus = self.mStatus
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: "LiveJobItem") as! LiveJobItem
+            cell.data = mJobs[indexPath.row]
+            var data = cell.data
             cell.viewController = self
+
+            cell.mCustomer.text = data?.customerName
+            cell.mProvider.text = data?.providerName
+            cell.mTime.text = data?.time
+            cell.mPrice.text = "$\((data?.price)!)"
+            cell.mJobId = data?.mJobId
+            cell.mStatus = data?.status
+            cell.collectionView.reloadData()
 
             if (mStatus == 0) {
                 if (mIsCustomer == 1) {
@@ -124,14 +111,26 @@ class JobViewController: MenuItemContentViewController, UITableViewDelegate, UIT
                     cell.mButton.setTitle("End", for: .normal)
                 }
             }
-            return cell
+        if (mStatus == 2) {
+            cell.mFeedback.isHidden = false
+            cell.mRating.isHidden = false
+            cell.mRatingNum.isHidden = false
+            cell.mButton.isHidden = true
+            
+            cell.mFeedback.text = data?.feedback
+            cell.mRatingNum.text = "\((data?.rating)!).0"
+            cell.mRating.rating = (data?.rating)!
+        } else {
+            cell.mFeedback.isHidden = true
+            cell.mRating.isHidden = true
+            cell.mRatingNum.isHidden = true
         }
+            return cell
     }
     
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("You tapped cell number \(indexPath.row).")
-        
     }
     @IBAction func didOpenMenu(_ sender: UIButton) {
         showMenu()
@@ -174,3 +173,4 @@ class JobViewController: MenuItemContentViewController, UITableViewDelegate, UIT
         super.viewWillDisappear(animated)
     }
 }
+

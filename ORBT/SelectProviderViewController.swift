@@ -20,7 +20,7 @@ class ServiceProvider {
 
 class SelectProviderViewController: UIViewController, UITableViewDelegate, UITableViewDataSource , MKMapViewDelegate {
     
-    var mSelectService = 0
+    var selectedList = [Int]()
     var mIndex = -1
 
     var mCandidates = [ServiceProvider]()
@@ -59,7 +59,7 @@ class SelectProviderViewController: UIViewController, UITableViewDelegate, UITab
             "customername" : mName,
             "providerid" : mCandidates[mIndex].id,
             "providername" : "\(mCandidates[mIndex].firstName!) \(mCandidates[mIndex].lastName!)",
-            "serviceid": mSelectService,
+            "selectedList": selectedList,
             "time" : strDate,
             "latitude" : annotation.coordinate.latitude,
             "longitude" : annotation.coordinate.longitude
@@ -92,7 +92,7 @@ class SelectProviderViewController: UIViewController, UITableViewDelegate, UITab
         mapView.addAnnotation(annotation)
 
         let parameters = [
-            "serviceid": mSelectService
+            "selectedList": selectedList
         ]
         Alamofire.request("\(BASE_URL)/service/candidates", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
             

@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 import Alamofire
 import CoreLocation
+import CircularSpinner
 
 var mID = -1
 var mIsCustomer = 0
 var mLatitude = 1.1;
 var mLongitude = 1.1;
 var mName : String?
-var mMajor = -1
 
 class LandingViewController: UIViewController , UITextFieldDelegate , CLLocationManagerDelegate {
     
@@ -29,6 +29,8 @@ class LandingViewController: UIViewController , UITextFieldDelegate , CLLocation
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        CircularSpinner.trackPgColor = UIColor(red: 255.0 / 255.0, green: 100.0 / 255.0, blue: 42.0 / 255.0, alpha: 1.0)
     }
     
     override func didReceiveMemoryWarning() {
@@ -44,9 +46,14 @@ class LandingViewController: UIViewController , UITextFieldDelegate , CLLocation
 
         let parameters = [
             "email"     : mEmail.text,
-            "password"  : mPassword.text
-        ]
+            "password"  : mPassword.text,
+            "device"    : deviceTokenString
+        ] as [String:Any]
+        
+        CircularSpinner.show("Log in", animated: true, type: .indeterminate, showDismissButton: false, delegate: nil)
         Alamofire.request("\(BASE_URL)/user/auth/login", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
+            
+            CircularSpinner.hide()
             
             // make sure we got JSON and it's a dictionary
             self.mLogIn.isUserInteractionEnabled = true;
@@ -60,19 +67,17 @@ class LandingViewController: UIViewController , UITextFieldDelegate , CLLocation
                 return
             }
             if ((json["success"] as? String) == "T") {
-                print("success")
                 let mUserInfo = json["userInfo"] as? [String: AnyObject]
-                print(mUserInfo)
+
+                if ((mUserInfo?["active"] as? Int)! == 0) {
+                    let alert = UIAlertController(title: "Error", message: "You are blocked!", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                    return
+                }
+                
                 mID = (mUserInfo?["id"] as? Int)!
                 mName = "\((mUserInfo!["firstname"] as! String!)!) \((mUserInfo!["lastname"] as! String!)!)"
-                
-                mMajor = -1
-                var ta = (mUserInfo?["servicelist"] as! [Int])
-                if (ta.count == 0) {
-                    mMajor = -1
-                } else {
-                    mMajor = ta[0]
-                }
                 
                 if (mUserInfo?["isCustomer"] as? Int == 1) {
                     mIsCustomer = 1
@@ -126,14 +131,13 @@ class LandingViewController: UIViewController , UITextFieldDelegate , CLLocation
         
         mLatitude = userLocation.coordinate.latitude
         mLongitude = userLocation.coordinate.longitude
-        if (mID == -1 || mIsCustomer == 1 || mMajor == -1) {
+        if (mID == -1 || mIsCustomer == 1) {
             return;
         }
         let parameters: Parameters = [
             "latitude"  : "\(userLocation.coordinate.latitude)",
             "longitude" : "\(userLocation.coordinate.longitude)",
-            "id"        : mID,
-            "major"     : mMajor
+            "id"        : mID
         ]
         
         // Both calls are equivalent

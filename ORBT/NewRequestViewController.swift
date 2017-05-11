@@ -4,9 +4,23 @@ import Alamofire
 import Foundation
 import MapKit
 import InteractiveSideMenu
+import KImageView
 
 class CustomPointAnnotation: MKPointAnnotation {
     var imageName: String!
+}
+
+class Category {
+    var id: Int = 0
+    var name: String = ""
+    var image: String = ""
+    var isSelected: Bool = false
+    init(id: Int, name: String, image: String) {
+        self.id = id
+        self.name = name
+        self.image = image
+        self.isSelected = false
+    }
 }
 
 class NewRequestViewController: MenuItemContentViewController , MKMapViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
@@ -14,14 +28,13 @@ class NewRequestViewController: MenuItemContentViewController , MKMapViewDelegat
     @IBOutlet weak var mapView: MKMapView!
     //Collection
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var mServiceRequest: UIButton!
-    
     fileprivate var collectionViewLayout: LGHorizontalLinearFlowLayout!
     
-    var stringArray: [String] = ["Service1", "Service2", "Service3", "Service4", "Service5", "Service6", "Service7"]
     var selectedCell: Int! = 0
     //End
 
+    var categoryList = [Category]()
+    var requestList = [Int]()
     var mMine = MKPointAnnotation()
     var mProviders = [CustomPointAnnotation]()
     var mFlag = 1
@@ -31,9 +44,21 @@ class NewRequestViewController: MenuItemContentViewController , MKMapViewDelegat
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "SelectProviderViewController") as! SelectProviderViewController
-        vc.mSelectService = selectedCell
+        vc.selectedList.removeAll()
+        for var one in categoryList {
+            if (one.isSelected) {
+                vc.selectedList.append(one.id)
+            }
+        }
+        if (vc.selectedList.count == 0) {
+            let alert = UIAlertController(title: "Error", message: "No service is selected!", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
         menuContainerViewController.navigationController?.pushViewController(vc, animated: true)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,7 +68,7 @@ class NewRequestViewController: MenuItemContentViewController , MKMapViewDelegat
         
         selectedCell = 0
         
-        self.collectionViewLayout = LGHorizontalLinearFlowLayout.configureLayout(self.collectionView, itemSize: CGSize(width: 90, height: 90), minimumLineSpacing: 10)
+        self.collectionViewLayout = LGHorizontalLinearFlowLayout.configureLayout(self.collectionView, itemSize: CGSize(width: 150, height: 220), minimumLineSpacing: 10)
         //End
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -54,10 +79,11 @@ class NewRequestViewController: MenuItemContentViewController , MKMapViewDelegat
             mProviders += [CustomPointAnnotation()]
             mProviders[i].coordinate = CLLocationCoordinate2DMake(10000, 10000)
             mProviders[i].title = "Service"
-            mProviders[i].subtitle = "Provider"
-            mProviders[i].imageName = "Service3.png"
+            mProviders[i].imageName = "providerAvatar"
             self.mapView.addAnnotation(mProviders[i])
         }
+        
+        getServiceList()
     }
     
     func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
@@ -106,7 +132,7 @@ class NewRequestViewController: MenuItemContentViewController , MKMapViewDelegat
         //the view is dequeued or created...
         
         let cpa = annotation as! CustomPointAnnotation
-        anView?.image = resizeImage(image:UIImage(named:cpa.imageName)!, targetSize: CGSize(width:100, height:100))
+        anView?.image = resizeImage(image:UIImage(named:cpa.imageName)!, targetSize: CGSize(width:80, height:80))
         return anView
     }
     func setMyLocation() {
@@ -131,45 +157,40 @@ class NewRequestViewController: MenuItemContentViewController , MKMapViewDelegat
             return
         }
         
-        Alamofire.request("\(BASE_URL)/service/locations").responseJSON { response in
+        var requestList = [Int]()
+        for var one in categoryList {
+            if (one.isSelected) {
+                requestList.append(one.id)
+            }
+        }
+        let parameters = [
+            "requestList"     : requestList
+        ]
+        Alamofire.request("\(BASE_URL)/service/locations", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
             
             // make sure we got JSON and it's a dictionary
             guard let json = response.result.value as? [String: AnyObject] else {
                 print("didn't get todo object as JSON from API")
                 return
             }
-            if ((json["success"] as? String) == "T") {
-                print("success")
-                guard let mLocations = json["locations"] as? [[String: AnyObject]] else {
-                    return
-                }
-                print(mLocations)
-
+            guard let mLocations = json["locations"] as? [[String: AnyObject]] else {
+                return
+            }
                 self.mMine.coordinate = CLLocationCoordinate2DMake(mLatitude, mLongitude)
-
                 var i = 0
                 for var mTmp in mLocations {
                     var mLat = mTmp["latitude"] as? String
                     var mLon = mTmp["longitude"] as? String
                     self.mProviders[i].coordinate = CLLocationCoordinate2DMake(Double(mLat!)!, Double(mLon!)!)
-                    
-                    var mMajor = mTmp["major"] as? Int
-                    if self.mProviders[i].imageName != "Service\(mMajor! + 1)" {
-                        self.mProviders[i].imageName = "Service\(mMajor! + 1)"
-                        self.mapView.removeAnnotation(self.mProviders[i])
-                        self.mapView.addAnnotation(self.mProviders[i])
-                    }
+                    self.mProviders[i].title = mTmp["name"] as? String
                     i = i + 1
                 }
                 while i < 100 {
                     self.mProviders[i].coordinate = CLLocationCoordinate2DMake(10000, 10000)
                     i = i + 1
                 }
-            } else {
-            }
             self.getLocationFromServer();
         }
-
     }
     @IBAction func didOpenMenu(_ sender: UIButton) {
         showMenu()
@@ -189,8 +210,33 @@ class NewRequestViewController: MenuItemContentViewController , MKMapViewDelegat
         super.viewWillDisappear(animated)
     }
     
+    
+    func getServiceList() {
+        categoryList.removeAll()
+        
+        Alamofire.request("\(BASE_URL)/category/getAllActive").responseJSON { response in
+            
+            // make sure we got JSON and it's a dictionary
+            guard let json = response.result.value as? [String: AnyObject] else {
+                print("didn't get todo object as JSON from API")
+                return
+            }
+            if ((json["success"] as? String) == "T") {
+                print("success")
+                guard let categoryJSA = json["category"] as? [[String: AnyObject]] else {
+                    return
+                }
+
+                for var categoryJSON in categoryJSA {
+                    self.categoryList.append(Category(id: categoryJSON["id"] as! Int, name: categoryJSON["name"] as! String, image: categoryJSON["image"] as! String))
+                }
+                self.collectionView.reloadData()
+            } else {
+            }
+        }
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return stringArray.count
+        return categoryList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -201,14 +247,11 @@ class NewRequestViewController: MenuItemContentViewController , MKMapViewDelegat
         cell.layer.rasterizationScale = UIScreen.main.scale
         
         if(selectedCell != nil){
-            if(indexPath.item == selectedCell){
-                cell.image.image = UIImage(named: stringArray[indexPath.item])!
-            }
-            else{
-                cell.image.image = UIImage(named: stringArray[indexPath.item])!
-            }
+            cell.image.ImageFromURL(url: "\(BASE_URL)/images/\(categoryList[indexPath.item].image)", indicatorColor: .gray, errorImage: UIImage(), imageView: cell.image)
+            cell.txtServiceName.text = categoryList[indexPath.item].name
+            cell.btnSelect.isSelected = categoryList[indexPath.item].isSelected
+            cell.cellData = categoryList[indexPath.item]
         }
-        
         return cell
     }
     
@@ -265,5 +308,12 @@ class NewRequestViewController: MenuItemContentViewController , MKMapViewDelegat
 
 class collectionViewCell: UICollectionViewCell {
     @IBOutlet var image: UIImageView!
+    @IBOutlet weak var txtServiceName: UILabel!
+    @IBOutlet weak var btnSelect: UIButton!
+    var cellData: Category?
+    @IBAction func onSelect(_ sender: Any) {
+        btnSelect.isSelected = !btnSelect.isSelected
+        cellData?.isSelected = btnSelect.isSelected
+    }
 }
 

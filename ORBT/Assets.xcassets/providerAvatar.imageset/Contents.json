@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "filename" : "6b990637dd35589611c884f25c61fc18_computer-age-systems-computer-transparent-computer-repair-clipart_1631-1166.png",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "6b990637dd35589611c884f25c61fc18_computer-age-systems-computer-transparent-computer-repair-clipart_1631-1165.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "6b990637dd35589611c884f25c61fc18_computer-age-systems-computer-transparent-computer-repair-clipart_1631-1167.png",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

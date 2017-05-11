@@ -1,9 +1,14 @@
 import UIKit
 class ServiceItem: UITableViewCell {
-    @IBOutlet weak var myCellLabel: UILabel!
+    @IBOutlet weak var txtName: UILabel!
     @IBOutlet weak var mCheck: UIButton!
+    @IBOutlet weak var txtPrice: UILabel!
+    @IBOutlet weak var imgService: UIImageView!
     @IBAction func onClick(_ sender: Any) {
+        mCheck.isSelected = !mCheck.isSelected
+        data?.isSelected = mCheck.isSelected
     }
+    var data: ServiceCategory?
 }
 
 class AvailabilityItem: UITableViewCell {
